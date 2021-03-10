@@ -1,2 +1,2 @@
 # python-programing-questions
-Commonly asked Python programming question and solutions
+Commonly asked Python programming questions and solutions
