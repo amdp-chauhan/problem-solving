@@ -1,4 +1,7 @@
+
+
 # Convert to Decimal to Binary, Octal, Hex
+
 number = 1234567
 # Using built-in functions
 print('** Using built-in functions **')
@@ -38,3 +41,7 @@ def decimal_to_other(number, target_base):
 print('Binry: ',decimal_to_other(1234567, target_base=2))
 print('Octal: ',decimal_to_other(1234567, target_base=8))
 print('Hex: ',decimal_to_other(1234567, target_base=16))
+
+# a function to convert Bin/Oct/Hex to Dec can easily be written by multiplying digits (right -> left) with (base)^i
+
+
