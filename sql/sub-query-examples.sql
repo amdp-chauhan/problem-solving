@@ -105,4 +105,16 @@ WHERE W1.continent = W2.continent
 
 
 -- 10. Some countries have populations more than three times that of any of their neighbours (in the same continent). Give the countries and continents.
+with temp1 as
+(SELECT w1.name, w1.continent from world w1
+inner join
+(select name, continent, population
+from world) w2
+ON w1.continent=w2.continent where w1.population>3*w2.population)
 
+select table_1.name, table_1.continent  From
+(select name, continent, count(*) as count_1 from temp1 group by continent, name) table_1
+INNER JOIN
+(select continent, count(*) as count_2 from world group by continent) table_2
+ON table_1.continent = table_2.continent
+WHERE table_1.count_1+1=table_2.count_2
