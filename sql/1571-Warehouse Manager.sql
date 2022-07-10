@@ -1,4 +1,4 @@
-Table: Warehouse
+/*Table: Warehouse
 
 +--------------+---------+
 | Column Name  | Type    |
@@ -80,7 +80,7 @@ LCHouse3: 1 unit of LC-T-Shirt.
           
           
 Solution:
-
+*/
 # Write your MySQL query statement below
 SELECT wh.name as warehouse_name, SUM(wh.units*(prod.Width * prod.Length * prod.Height)) AS volume
 FROM Warehouse AS wh
