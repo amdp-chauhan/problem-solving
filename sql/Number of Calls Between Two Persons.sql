@@ -1,3 +1,4 @@
+/*
 Table: Calls
 
 +-------------+---------+
@@ -47,13 +48,14 @@ Explanation:
 Users 1 and 2 had 2 calls and the total duration is 70 (59 + 11).
 Users 1 and 3 had 1 call and the total duration is 20.
 Users 3 and 4 had 4 calls and the total duration is 999 (100 + 200 + 200 + 499).
+*/
 
 
-
-Query :
+-- Query :
 
 /* Write your T-SQL query statement below */
-with temp_table as
+
+WITH temp_table as
 (SELECT 
 (SELECT MIN(id) FROM (VALUES (from_id), (to_id)) AS find_ids(id)) AS person1, 
 (SELECT MAX(id) FROM (VALUES (from_id), (to_id)) AS find_ids(id)) AS person2,
