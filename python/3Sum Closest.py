@@ -26,7 +26,6 @@ Constraints:
 """
 
 # Solution
-
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
         distance_from_target = float('inf')
@@ -34,10 +33,9 @@ class Solution:
         sorted_list = sorted(nums)
         
         for current in range(len(sorted_list)):
-            left_point = current + 1
-            right_point = len(sorted_list) - 1
+            left_point, right_point= current + 1, len(sorted_list) - 1
 
-            while left_point < right_point:
+            while (left_point < right_point):
                 new_sum = sorted_list[current] + sorted_list[left_point] + sorted_list[right_point]
 
                 if abs(target - new_sum) < abs(distance_from_target):
@@ -50,5 +48,5 @@ class Solution:
                     left_point += 1
                 else:
                     right_point -= 1
-            
+
         return target - distance_from_target
