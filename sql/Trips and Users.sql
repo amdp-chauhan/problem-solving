@@ -101,23 +101,27 @@ On 2013-10-03:
 
 -- Write your MySQL query statement below
 
-SELECT usr_tbl.request_at AS Day, ROUND(COUNT(CASE WHEN usr_tbl.status<>'completed' THEN 1 ELSE null END)/COUNT(1),2) AS 'Cancellation Rate'  FROM
-(SELECT t.*, u.banned AS is_user_banned 
-FROM Trips AS t
-left join
-Users as u
-ON u.users_id=t.client_id) AS usr_tbl
+SELECT usr_tbl.request_at AS Day, ROUND(COUNT(CASE WHEN usr_tbl.status<>'completed' THEN 1 ELSE null END)/COUNT(1),2) AS 'Cancellation Rate'  
+FROM
+    (SELECT t.*, u.banned AS is_user_banned 
+     FROM Trips AS t
+     LEFT JOIN Users as u
+     ON u.users_id=t.client_id) AS usr_tbl
+     
 LEFT JOIN
-(SELECT t.*, u.banned AS is_driver_banned 
-FROM Trips AS t
-left join
-Users as u
-ON u.users_id=t.driver_id) AS drive_tbl
+     
+     (SELECT t.*, u.banned AS is_driver_banned 
+      FROM Trips AS t
+      LEFT JOIN Users as u
+      ON u.users_id=t.driver_id) AS drive_tbl
+      
 ON usr_tbl.id = drive_tbl.id
+
 WHERE 
-drive_tbl.is_driver_banned = 'No' AND
-usr_tbl.is_user_banned = 'No' AND
-usr_tbl.request_at between "2013-10-01" AND "2013-10-03"
+      drive_tbl.is_driver_banned = 'No' AND
+      usr_tbl.is_user_banned = 'No' AND
+      usr_tbl.request_at between "2013-10-01" AND "2013-10-03"
+
 GROUP BY usr_tbl.request_at
 
 
