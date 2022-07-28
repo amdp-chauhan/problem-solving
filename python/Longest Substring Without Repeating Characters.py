@@ -49,3 +49,17 @@ class Solution:
                 largest_len = temp_counter
 
         return largest_len
+
+# Solution 2
+class Solution:
+    def lengthOfLongestSubstring(self, s: str, max_length: int = 0) -> int:
+        if s:
+            unique_string = ""
+            for char in s:
+                if char in unique_string:
+                    break
+                unique_string += char
+            if len(unique_string) > max_length:
+                max_length = len(unique_string)
+            return self.lengthOfLongestSubstring(s[1:], max_length)
+        return max_length
