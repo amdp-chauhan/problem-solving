@@ -40,64 +40,7 @@ Constraints:
 At most 2 * 105 calls will be made to get and put.
 """
 
-
-class LRUCache:
-
-    def __init__(self, capacity: int):
-        self.capacity = capacity
-        self.key_usage = {}
-        self.lru = {}
-        return None
-
-    def get(self, key: int) -> int:
-        
-        if key in self.lru.keys():
-            # self.key_usage[key] = self.key_usage[key]+1 if key in self.key_usage.keys() else 1
-            self.key_usage[key] = max(self.key_usage.values())+1
-            print(f'GET {key} LRU - ',self.lru, self.key_usage)
-            return self.lru[key]
-        print(f'GET {key} LRU - ',self.lru, self.key_usage)
-        return -1
-
-    def put(self, key: int, value: int) -> None:
-        # If LRU capacity is already reached
-        if (not key in self.lru.keys()) and (len(self.lru.keys())>=self.capacity):
-            # Delete the least used key
-            min_value = min(self.key_usage.values())
-            least_used_key = [kk for kk in self.key_usage.keys() if self.key_usage[kk]==min_value] 
-            print(f'least_used_key:{least_used_key}')
-            # delete least used key
-            del self.lru[least_used_key[0]]
-            del self.key_usage[least_used_key[0]]
-            # reset the key_usage stats
-            for k in self.key_usage.keys(): self.key_usage[k] = 1
-
-        self.lru[key] = value
-        self.key_usage[key] = max(self.key_usage.values())+1 if len(self.key_usage.values())>0 else 1
-        print(f'PUT ({key,value}) LRU - ',self.lru, self.key_usage)
-        return None
-# Your LRUCache object will be instantiated and called as such:
-result = []
-obj = LRUCache(2)
-result.append(None)
-obj.put(2, 1)
-result.append(None)
-obj.put(2, 2)
-result.append(None)
-param_1 = obj.get(2)
-result.append(param_1)
-obj.put(1, 1)
-result.append(None)
-obj.put(4, 1)
-result.append(None)
-param_2 = obj.get(2)
-result.append(param_2)
-print(result)
-print("------")
-
-
-
-# Approach 2 
+# Approach 1
 class LRUCache:
 
     def __init__(self, capacity: int):
