@@ -51,3 +51,19 @@ class Solution:
             nums.append(n)
 
         return result
+
+       
+# Approach 2 - Using Backtracking 
+class Solution:
+    def permute(self, nums):
+        results = []
+        def get_permute(a, l, r):
+            if l==r:
+                results.append(a.copy())
+            else:
+                for i in range(l,r):
+                    a[l], a[i] = a[i], a[l]
+                    get_permute(a, l+1, r)
+                    a[l], a[i] = a[i], a[l] # backtrack
+        get_permute(nums, 0, len(nums))
+        return results
