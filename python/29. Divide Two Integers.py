@@ -27,8 +27,26 @@ Constraints:
 divisor != 0
 """
 
+# Method 1 - Linear Time
+# class Solution:
+#     def divide(self, dividend: int, divisor: int, sign='pos') -> int:
+#         if abs(dividend)<abs(divisor):
+#             return 0
+#         if abs(divisor)==1:
+#             output = dividend if divisor>0 else -dividend
+#         elif dividend>0 and divisor>0:
+#             #print(dividend, divisor, dividend-divisor)
+#             output = 1 + self.divide(dividend-divisor, divisor)
+#         elif dividend<0 and divisor<0:
+#             #print(dividend, divisor, abs(dividend)-abs(divisor))
+#             output = 1 + self.divide(abs(dividend)-abs(divisor), abs(divisor))
+#         else:
+#             #print(dividend, divisor, -(abs(dividend)-abs(divisor)))
+#             output = -1 + self.divide(-(abs(dividend)-abs(divisor)), abs(divisor))
+#             #print('out - ',out)
+#         return max(-2**31, (min (output, (2**31)-1)))
 
-
+# Method 2 - Logarithamic time
 class Solution:
     def divide(self, dividend: int, divisor: int, sign='pos') -> int:
         positive = (dividend < 0) is (divisor < 0)
